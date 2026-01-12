@@ -8,16 +8,15 @@
 
 <style>
   :root{
-    /* Berry-light + tech-signal */
-    --paper:#f7f5ef;
-    --ink:#0f1411;
-    --muted:#5f6a63;
+    /* Berry: paper, light, restraint */
+    --paper:#f7f4ec;
+    --ink:#111311;
+    --muted:#616a64;
     --rule:#ded7c8;
 
-    /* “terminal” accent (used like a spice, not a costume) */
-    --signal:#1ef2a4;
-    --signal-dim:rgba(30,242,164,.25);
-    --panel:rgba(15,20,17,.04);
+    /* tech, but barely */
+    --signal:#1ee8a8;
+    --signal-dim:rgba(30,232,168,.18);
 
     --serif: ui-serif, Georgia, "Iowan Old Style", Palatino, serif;
     --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial;
@@ -30,33 +29,37 @@
     margin:0;
     color:var(--ink);
     font-family:var(--serif);
-    line-height:1.75;
+    line-height:1.8;
     background:
-      /* faint “window grid” */
-      linear-gradient(to right, rgba(0,0,0,.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0,0,0,.03) 1px, transparent 1px),
-      /* warm paper */
-      radial-gradient(900px 600px at 20% 10%, rgba(30,242,164,.06), transparent 60%),
+      /* very faint “window grid” */
+      linear-gradient(to right, rgba(0,0,0,.018) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,.018) 1px, transparent 1px),
       var(--paper);
-    background-size: 84px 84px, 84px 84px, auto, auto;
+    background-size: 120px 120px, 120px 120px, auto;
   }
 
   .wrap{
-    max-width: 860px;
+    max-width: 760px;
     margin: 0 auto;
-    padding: 62px 20px 86px;
+    padding: 72px 20px 92px;
   }
 
   header{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:18px;
-    margin-bottom: 34px;
+    margin-bottom: 46px;
   }
 
-  .brand{
-    min-width: 240px;
+  .nameRow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom: 10px;
+  }
+
+  .led{
+    width:7px; height:7px;
+    border-radius:999px;
+    background:var(--signal);
+    box-shadow: 0 0 14px var(--signal-dim);
   }
 
   .name{
@@ -65,103 +68,24 @@
     letter-spacing:.12em;
     text-transform:uppercase;
     color:var(--muted);
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-
-  .led{
-    width:8px; height:8px;
-    border-radius:999px;
-    background:var(--signal);
-    box-shadow: 0 0 14px var(--signal-dim);
-    position:relative;
-  }
-  .led::after{
-    content:"";
-    position:absolute;
-    inset:-6px;
-    border-radius:999px;
-    border:1px solid rgba(30,242,164,.18);
   }
 
   .tagline{
-    margin:12px 0 0;
+    margin:0;
     font-size: 24px;
     letter-spacing:.01em;
   }
 
+  main{
+    border-top: 1px solid var(--rule);
+    padding-top: 34px;
+  }
+
   .meta{
-    font-family:var(--mono);
+    margin: 0 0 18px;
+    font-family: var(--mono);
     font-size: 12px;
-    color:var(--muted);
-    text-align:right;
-    line-height:1.5;
-    padding-top: 2px;
-  }
-
-  /* Page “workbench” */
-  .bench{
-    border: 1px solid var(--rule);
-    background: rgba(255,255,255,.55);
-    backdrop-filter: blur(2px);
-    border-radius: 18px;
-    padding: 30px 28px;
-    position:relative;
-  }
-
-  /* subtle “scanline” hint — very light */
-  .bench::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:18px;
-    pointer-events:none;
-    background:
-      repeating-linear-gradient(
-        to bottom,
-        rgba(0,0,0,.015),
-        rgba(0,0,0,.015) 1px,
-        transparent 1px,
-        transparent 10px
-      );
-    mix-blend-mode:multiply;
-    opacity:.35;
-  }
-
-  .benchInner{ position:relative; }
-
-  .topRule{
-    display:flex;
-    justify-content:space-between;
-    gap:14px;
-    align-items:center;
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--muted);
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--rule);
-    margin-bottom: 20px;
-  }
-
-  .crumb{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    align-items:center;
-  }
-
-  .chip{
-    border:1px solid var(--rule);
-    background: rgba(15,20,17,.03);
-    padding: 6px 10px;
-    border-radius: 999px;
-  }
-
-  .chip.signal{
-    border-color: rgba(30,242,164,.35);
-    background: rgba(30,242,164,.06);
-    color: #0f3b2b;
+    color: var(--muted);
   }
 
   .letter{
@@ -173,21 +97,21 @@
   .divider{
     height:1px;
     background: var(--rule);
-    margin: 26px 0 16px;
+    margin: 30px 0 18px;
   }
 
   .actions{
     display:flex;
     justify-content:space-between;
+    align-items:center;
     gap:14px;
     flex-wrap:wrap;
-    align-items:center;
   }
 
   .hint{
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
   }
 
   button{
@@ -200,40 +124,35 @@
     font-size: 12px;
     cursor:pointer;
     color: var(--ink);
-    transition: transform .05s ease, border-color .2s ease, background .2s ease;
+    transition: transform .05s ease, border-color .2s ease;
   }
-  button:hover{ border-color:#c9c0ad; background: rgba(15,20,17,.02); }
+  button:hover{ border-color:#c9c0ad; }
   button:active{ transform: translateY(1px); }
 
   button.primary{
-    border-color: rgba(30,242,164,.45);
-    background: rgba(30,242,164,.08);
+    border-color: rgba(30,232,168,.35);
   }
 
   footer{
-    margin-top: 42px;
+    margin-top: 48px;
     display:flex;
     justify-content:space-between;
     gap:12px;
     flex-wrap:wrap;
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
   }
 
   @media (max-width: 680px){
-    header{flex-direction:column; align-items:flex-start}
-    .meta{text-align:left}
-    .bench{padding: 22px 18px}
-    .tagline{font-size: 22px}
+    .wrap{padding: 56px 18px 80px;}
+    .tagline{font-size: 22px;}
   }
 
   @media print{
     body{background:#fff}
-    header,.actions,footer{display:none !important}
+    .actions, footer{display:none !important}
     .wrap{padding:0}
-    .bench{border:0; background:#fff; padding:0}
-    .bench::before{display:none}
     .letter{font-size: 14pt; line-height:1.65}
   }
 </style>
@@ -242,28 +161,17 @@
 <body>
   <div class="wrap">
     <header>
-      <div class="brand">
-        <div class="name"><span class="led" aria-hidden="true"></span> Haven Sound</div>
-        <p class="tagline">A quiet place for songs that tell the truth.</p>
+      <div class="nameRow">
+        <span class="led" aria-hidden="true"></span>
+        <div class="name">Haven Sound</div>
       </div>
-      <div class="meta">
-        invitation / archive-first<br/>
-        signal over spectacle
-      </div>
+      <p class="tagline">A quiet place for songs that tell the truth.</p>
     </header>
 
-    <main class="bench" role="region" aria-label="Invitation">
-      <div class="benchInner">
-        <div class="topRule">
-          <div class="crumb">
-            <span class="chip signal">status: steady</span>
-            <span class="chip">tempo: unhurried</span>
-            <span class="chip">mode: witness</span>
-          </div>
-          <div>v0.3</div>
-        </div>
+    <main role="region" aria-label="Invitation">
+      <p class="meta">invitation • archive-first • no pressure</p>
 
-        <p class="letter" id="inviteText">James—
+      <p class="letter" id="inviteText">James—
 
 This isn’t a pitch. It’s an invitation.
 
@@ -292,22 +200,20 @@ You don’t have to carry this alone.
 
 — Haven Sound</p>
 
-        <div class="divider"></div>
+      <div class="divider"></div>
 
-        <div class="actions">
-          <div class="hint">Quiet tech. Human signal. Let the words breathe.</div>
-          <div style="display:flex; gap:10px; flex-wrap:wrap">
-            <button class="primary" id="copyBtn">copy</button>
-            <button id="downloadBtn">download</button>
-            <button id="printBtn">print</button>
-          </div>
+      <div class="actions">
+        <div class="hint">Let the work be quiet. Let the truth be clear.</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <button class="primary" id="copyBtn">copy</button>
+          <button id="printBtn">print</button>
         </div>
       </div>
     </main>
 
     <footer>
       <div>Haven Sound</div>
-      <div>built for refuge</div>
+      <div>signal over spectacle</div>
     </footer>
   </div>
 
@@ -328,18 +234,6 @@ You don’t have to carry this alone.
       ta.remove();
       alert("Copied.");
     }
-  });
-
-  document.getElementById("downloadBtn").addEventListener("click", () => {
-    const blob = new Blob([inviteText], {type:"text/plain;charset=utf-8"});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "haven-sound-invitation-james.txt";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
   });
 
   document.getElementById("printBtn").addEventListener("click", () => window.print());
